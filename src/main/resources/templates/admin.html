@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список пользователей</title>
+    <style>table th, table td {
+        padding: 5px;
+    }</style>
+</head>
+<body>
+<div id="table-users">
+    <h3>Список пользователей</h3>
+
+
+    <table border="1">
+        <tr>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>E-mail</th>
+            <th>Возраст</th>
+            <th>Username</th>
+            <th>Роль</th>
+            <th></th>
+        </tr>
+
+        <tr th:each="user :${users}">
+            <td th:utext="${user.getFirstname()}">VALUE</td>
+            <td th:utext="${user.getLastname()}">VALUE</td>
+            <td th:utext="${user.getEmail()}">VALUE</td>
+            <td th:utext="${user.getAge()}">VALUE</td>
+            <td th:utext="${user.getUsername()}">VALUE</td>
+            <td>
+                <ul>
+                    <li th:each="role: ${user.getRoles()}" th:text="${role.getRole()}"></li>
+                </ul>
+
+            </td>
+            <td>
+                <input th:attr="onclick='window.location.href = \'' + @{/admin/edit?id={id}(id=${user.getId()})} + '\''"
+                       type="button" value="Редактировать">
+
+                <input th:attr="onclick='window.location.href = \'' + @{/admin/remove?id={id}(id=${user.getId()})} + '\''"
+                       type="button" value="Удалить">
+            </td>
+        </tr>
+
+    </table>
+    <br>
+    <input type="button" value="Добавить" onclick="window.location.href='/admin/new-user'">
+    <br>
+    <br>
+    <input type="button" value="Logout" onclick="window.location.href='/logout'">
+</div>
+</body>
+</html>

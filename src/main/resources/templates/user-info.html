@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о пользователе</title>
+</head>
+<body>
+<div id="user-form">
+    <form>
+        <div class="user-label"><label>Username</label></div>
+        <div><input class="create-user-input" name="username" disabled type="text" th:value="${user.getUsername()}">
+        </div>
+        <br>
+        <div class="user-label"><label>Имя</label></div>
+        <div><input class="create-user-input" name="firstname" disabled type="text" th:value="${user.getFirstname()}">
+        </div>
+        <br>
+        <div class="user-label"><label>Фамилия</label></div>
+        <div><input class="create-user-input" name="lastname" disabled type="text" th:value="${user.getLastname()}">
+        </div>
+        <br>
+        <div class="user-label"><label>E-mail</label></div>
+        <div><input class="create-user-input" name="email" disabled type="text" th:value="${user.getEmail()}"></div>
+        <br>
+        <div class="user-label"><label>Возраст</label></div>
+        <div><input class="create-user-input" name="age" disabled type="text" th:value="${user.getAge()}"></div>
+
+        <input name="id" type="hidden" th:value="${user.getId()}">
+
+        <br>
+
+        <input class="create-user-form-button" type="button" value="Назад" onclick="history.back();"/>
+
+    </form>
+    <br>
+    <br>
+    <input type="button" value="Logout" onclick="window.location.href='/logout'">
+</div>
+</body>
+</html>
